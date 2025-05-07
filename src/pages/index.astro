@@ -8,7 +8,7 @@ const source = 'https://assets.codepen.io/16425/jelly-belly-beans.json';
 // fetch the data
 const res = await fetch(source); 
 // store retreived data
-const data = await res.json();
+const jellyBeans = await res.json();
 ---
 
 <html lang="en">
@@ -29,17 +29,20 @@ const data = await res.json();
 			<h1 class="site-title">Jelly Belly</h1>
 		</header>
 
-		<main id="content" class="main-area">
+		<main class="wrapper">
 
-			<ul class="cards">
+			<ul class="grid">
 		  
-				<!-- Your API Data -->
 				{
-					data.map( item =>
-					<li class="card-item">
+					jellyBeans.map( bean =>
+					<li style={`background: ${ bean.backgroundColor } `}>
 						
-						test
+						<h2> { bean.flavorName } </h2> 
 						
+						<img src={bean.imageUrl} alt={bean.flavorName} />
+						
+						<p> { bean.description } </p>
+
 					</li> 
 					)
 				}
